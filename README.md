@@ -43,7 +43,7 @@
 - belongs_to :item
 - has_one : delivery
 
-## deliveryテーブル(配送情報)
+## deliveriesテーブル(配送情報)
 
 |Column            |Type      |Options                     |
 |purchase          |references|null:false,foreign_key: true|

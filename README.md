@@ -18,6 +18,7 @@
 ## itemsテーブル（商品情報）
 
 |Column           |Type      |Options                     |
+|-----------------|----------|----------------------------|
 |user             |references|null:false,foreign_key: true|
 |name             |string    |null:false                  |
 |description      |text      |null:false                  |
@@ -35,6 +36,7 @@
 ## purchasesテーブル(購入情報)
 
 |Column|Type      |Options                     |
+|------|----------|----------------------------|
 |user  |references|null:false,foreign_key: true|
 |item  |references|null:false,foreign_key: true|
 
@@ -47,6 +49,7 @@
 ## deliveriesテーブル(配送情報)
 
 |Column            |Type      |Options                     |
+|------------------|----------|----------------------------|
 |purchase          |references|null:false,foreign_key: true|
 |post_code         |string    |null:false                  |
 |prefecture_code_id|integer   |null:false                  |

@@ -1,10 +1,9 @@
-document.addEventListener("turbolinks:load", function () {
-  $("#item_price").on("keyup", function () {
-    console.log("ok");
-    let price = $(this).val();
-    let fee = Math.round(price * 0.1);
-    let profit = price - fee;
-    $("#fee").text(fee);
-    $("#profit").text(profit);
+window.addEventListener('load', () => {
+  const priceInput = document.getElementById("item-price");
+  priceInput.addEventListener("input", () => {
+    const addTaxDom = document.getElementById('add-tax-price');
+    addTaxDom.innerHTML = Math.floor(priceInput.value * 0.1);
+    const addProfitDom = document.getElementById('profit');
+    addProfitDom.innerHTML = Math.floor(priceInput.value * 0.9)
   });
 });

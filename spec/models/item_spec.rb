@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item,user_id: user.id)
+    @item = FactoryBot.build(:item)
   end
 
 context '商品の登録ができるとき' do
@@ -63,10 +62,35 @@ context '商品の登録ができないとき' do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price 金額範囲内で入力してください")
     end
+    it '販売価格は、¥300~¥9999999の間のみで保存可能であること' do
+      @item.price = 10000000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price 金額範囲内で入力してください")
+    end
     it '販売価格は半角数字のみ保存可能であること' do
       @item.price = '１０００'
       @item.valid?
       expect(@item.errors.full_messages).to include("Price には半角数字を使用してください")
+    end
+    it '販売価格は半角英数字混合では出品できない' do
+      @item.price = '123abc'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price には半角数字を使用してください")
+    end
+    it '販売価格は半角英字のみでは出品できない' do
+      @item.price = 'abcdefg'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price には半角数字を使用してください")
+    end
+    it '販売価格は全角文字では出品できない' do
+      @item.price = '１０００'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price には半角数字を使用してください")
+    end
+    it 'ユーザーが紐付いていなければ投稿できない' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
     end
   end
 end

@@ -13,6 +13,11 @@ context '商品の登録ができるとき' do
   end
 
 context '商品の登録ができないとき' do
+    it 'imageが空だと出品できない' do
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Image can't be blank")
+    end
     it '商品名が空では登録できない' do
       @item.name = ''
       @item.valid?
@@ -23,30 +28,30 @@ context '商品の登録ができないとき' do
       @item.valid?
       expect(@item.errors.full_messages).to include("Description can't be blank")
     end
-    it 'カテゴリーの情報が空では登録できない' do
-      @item.category_id = ''
+    it 'カテゴリーの情報が未選択では登録できない' do
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
-    it '商品の状態についての情報が空では登録できない' do
-      @item.item_condition_id = ''
+    it '商品の状態についての情報が未選択では登録できない' do
+      @item.item_condition_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Item condition can't be blank", "Item condition is not a number")
+      expect(@item.errors.full_messages).to include("Item condition can't be blank")
     end
-    it '配送料の負担についての情報が空では登録できない' do
-      @item.postage_pay_id = ''
+    it '配送料の負担についての情報が未選択では登録できない' do
+      @item.postage_pay_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Postage pay can't be blank", "Postage pay is not a number")
+      expect(@item.errors.full_messages).to include("Postage pay can't be blank")
     end
-    it '発送元のにつ地域についての情報が空では登録できない' do
-      @item.postage_type_id = ''
+    it '発送元のにつ地域についての情報が未選択では登録できない' do
+      @item.postage_type_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Postage type can't be blank", "Postage type is not a number")
+      expect(@item.errors.full_messages).to include("Postage type can't be blank")
     end
-    it '発送までの日数が空では登録できない' do
-      @item.delivery_day_id = ''
+    it '発送までの日数が未選択では登録できない' do
+      @item.delivery_day_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery day can't be blank", "Delivery day is not a number")
+      expect(@item.errors.full_messages).to include("Delivery day can't be blank")
     end
     it '販売価格の情報が空では登録できない' do
       @item.price = ''

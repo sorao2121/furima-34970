@@ -10,8 +10,8 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :image
-    validates :name
-    validates :description
+    validates :name, length: { maximum: 40}
+    validates :description, length: { maximum: 1000}
     validates :category_id, numericality: { other_than: 1, message: "can't be blank"}
     validates :item_condition_id, numericality: { other_than: 1, message: "can't be blank"}
     validates :postage_pay_id, numericality: { other_than: 1, message: "can't be blank"}

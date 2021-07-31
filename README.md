@@ -13,7 +13,7 @@
 
 ### Association
 - has_many :items
-- has_many :purchases
+- has_many :order
 
 ## itemsテーブル（商品情報）
 
@@ -31,9 +31,9 @@
 
 ### Association
 - belongs_to :user
-- has_one :purchase
+- has_one :order
 
-## purchasesテーブル(購入情報)
+## ordersテーブル(購入情報)
 
 |Column|Type      |Options                     |
 |------|----------|----------------------------|
@@ -46,7 +46,7 @@
 - belongs_to :item
 - has_one : delivery
 
-## deliveriesテーブル(配送情報)
+## Addressesテーブル(配送情報)
 
 |Column            |Type      |Options                     |
 |------------------|----------|----------------------------|
@@ -60,4 +60,4 @@
 
 ### Association
 
-- belongs_to :purchase
+- belongs_to :order

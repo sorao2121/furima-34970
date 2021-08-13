@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :postage_type_id, :city, :house_number, :building_name, :phone_number, :order
+  attr_accessor :user_id, :item_id, :postal_code, :postage_type_id, :city, :house_number, :building_name, :phone_number, :order, :token
 
   with_options presence: true do
     validates :item_id
@@ -9,6 +9,7 @@ class OrderAddress
     validates :city
     validates :house_number
     validates :phone_number,length: { maximum: 11 }
+    validates :token
   end
   validates :postage_type_id, numericality: { other_than: 1, message: "can't be blank" }
 

@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2021_07_31_040420) do
     t.bigint "order_id", null: false
     t.string "postal_code", null: false
     t.integer "postage_type_id", null: false
-    t.string "city"
-    t.string "house_number"
+    t.string "city", null: false
+    t.string "house_number", null: false
     t.string "building_name"
-    t.string "phone_number"
+    t.string "phone_number", null: false
     t.index ["order_id"], name: "index_addresses_on_order_id"
   end
 

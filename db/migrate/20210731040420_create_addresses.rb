@@ -4,10 +4,10 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
       t.references :order,              null: false,foreign_key: true
       t.string     :postal_code,        null: false
       t.integer    :postage_type_id,    null: false
-      t.string     :city
-      t.string     :house_number
+      t.string     :city,               null: false
+      t.string     :house_number,       null: false
       t.string     :building_name
-      t.string     :phone_number
+      t.string     :phone_number,       null: false
     end
   end
 end
